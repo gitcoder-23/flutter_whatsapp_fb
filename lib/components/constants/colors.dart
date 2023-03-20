@@ -15,15 +15,18 @@ Map<int, Color> color = {
 
 MaterialColor primeColor = MaterialColor(0xffd1ad17, color);
 
-Color mainColorBlack = const Color(0xFF111B21);
-Color primaryColor = const Color(0xffd1ad17);
-Color headerColor = const Color(0xFFD6B738);
-Color scaffoldBackgroundColor = const Color(0xffcbcbcb);
-Color textColor = Colors.black87;
+Color mainBackgroundDark = const Color(0xFF111B21);
+Color mainBackgroundLight = const Color(0xFFFFFFFF);
 Color kWhite = Colors.white;
 Color kRed = Colors.red;
 Color kBlue = Colors.blue;
-Color kGreen = const Color(0xFF00A884);
-Color kGrey = const Color.fromARGB(255, 116, 114, 114);
+Color greenDark = const Color(0xFF00A884);
+Color greenLight = const Color(0xFF008069);
+Color blueDark = const Color(0xFF53BDEB);
+Color blueLight = const Color(0xFF027EB5);
+Color greyDark = const Color(0xFF8696A0);
+Color greyLight = const Color(0xFF667781);
+Color greyBackground = const Color(0xFF202C33);
+Color kTransparent = Colors.transparent;
 
 const int kPrimaryColor = 0xffd1ad17;
