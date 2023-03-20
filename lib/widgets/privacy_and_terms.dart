@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
+import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 
 class PrivacyAndTerms extends StatelessWidget {
   const PrivacyAndTerms({Key? key}) : super(key: key);
@@ -16,14 +16,14 @@ class PrivacyAndTerms extends StatelessWidget {
         text: TextSpan(
           text: 'Read our ',
           style: TextStyle(
-            color: greyDark,
+            color: context.theme.greyColor,
             height: 1.5,
           ),
           children: [
             TextSpan(
               text: 'Privacy Policy.',
               style: TextStyle(
-                color: blueDark,
+                color: context.theme.blueColor,
               ),
             ),
             const TextSpan(
@@ -32,7 +32,7 @@ class PrivacyAndTerms extends StatelessWidget {
             TextSpan(
               text: 'Terms of Services.',
               style: TextStyle(
-                color: blueDark,
+                color: context.theme.blueColor,
               ),
             ),
           ],

@@ -1,5 +1,7 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
-import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
+import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_elevated_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/language_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/privacy_and_terms.dart';
@@ -12,26 +14,28 @@ class WelcomePage extends StatelessWidget {
   }
 
   onLangBtnTap() {
-    print('onLangBtnTap');
+    print('onLangBtnTap--> ${ThemeMode.system}');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainBackgroundDark,
+      // backgroundColor: mainBackgroundDark,
       body: Column(
         children: [
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 50,
-                  vertical: 10,
+                  vertical: Platform.isAndroid ? 40 : 10,
                 ),
                 child: Image.asset(
                   'assets/images/circle.png',
-                  color: greenDark,
+                  // color: greenDark,
+                  // taken from system dynamic color
+                  color: context.theme.circleImageColor,
                 ),
               ),
             ),
@@ -55,8 +59,6 @@ class WelcomePage extends StatelessWidget {
                   btnWidth: MediaQuery.of(context).size.width - 100,
                   onBtnPressed: onBtnPressed,
                   btnName: 'AGREE AND CONTINUE',
-                  backgroundColor: greenDark,
-                  foregroundColor: mainBackgroundDark,
                 ),
                 const SizedBox(
                   height: 50,

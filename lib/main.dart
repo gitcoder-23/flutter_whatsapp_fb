@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_whatsapp_fb/common/theme/dark_theme.dart';
+import 'package:flutter_whatsapp_fb/common/theme/light_theme.dart';
 import 'package:flutter_whatsapp_fb/pages/welcome_page.dart';
 
 void main() {
@@ -16,7 +18,10 @@ class MyApp extends StatelessWidget {
       // theme: ThemeData(
       //   primarySwatch: Colors.blue,
       // ),
-      theme: ThemeData.dark(),
+      // theme: ThemeData.dark(),
+      theme: lightTheme(),
+      darkTheme: darkTheme(),
+      themeMode: ThemeMode.system,
       home: const WelcomePage(),
     );
   }

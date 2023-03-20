@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
+import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 
 class LanguageButton extends StatelessWidget {
   final onLangBtnTap;
@@ -11,13 +11,14 @@ class LanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: const Color(0xFF182229),
+      // color: const Color(0xFF182229),
+      color: context.theme.langBtnBgColor,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
         onTap: onLangBtnTap,
         borderRadius: BorderRadius.circular(20),
         splashFactory: NoSplash.splashFactory,
-        highlightColor: const Color(0xFF09141A),
+        highlightColor: context.theme.langBtnHighlightColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
@@ -28,7 +29,7 @@ class LanguageButton extends StatelessWidget {
             children: [
               Icon(
                 Icons.language,
-                color: greenDark,
+                color: context.theme.greenColor,
               ),
               const SizedBox(
                 width: 10,
@@ -36,7 +37,7 @@ class LanguageButton extends StatelessWidget {
               Text(
                 'English',
                 style: TextStyle(
-                  color: greenDark,
+                  color: context.theme.greenColor,
                 ),
               ),
               const SizedBox(
@@ -44,7 +45,7 @@ class LanguageButton extends StatelessWidget {
               ),
               Icon(
                 Icons.keyboard_arrow_down,
-                color: greenDark,
+                color: context.theme.greenColor,
               ),
             ],
           ),
