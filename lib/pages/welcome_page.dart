@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_elevated_button.dart';
+import 'package:flutter_whatsapp_fb/widgets/custom_icon_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/language_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/privacy_and_terms.dart';
 
@@ -41,23 +42,34 @@ class WelcomePage extends StatelessWidget {
                   const SizedBox(
                     width: 20,
                   ),
-                  IconButton(
-                    onPressed: () {
-                      // to close modal
+                  CustomIconButton(
+                    onIconBtnTap: () {
                       Navigator.of(context).pop();
                     },
+                    icon: Icons.close_outlined,
+                    iconColor: greyDark,
                     splashColor: kTransparent,
                     splashRadius: 22,
                     iconSize: 22,
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(
-                      minWidth: 40,
-                    ),
-                    icon: Icon(
-                      Icons.close_outlined,
-                      color: greyDark,
-                    ),
+                    minWidth: 40,
                   ),
+                  // IconButton(
+                  //   onPressed: () {
+                  //     // to close modal
+                  //     Navigator.of(context).pop();
+                  //   },
+                  //   splashColor: kTransparent,
+                  //   splashRadius: 22,
+                  //   iconSize: 22,
+                  //   padding: EdgeInsets.zero,
+                  //   constraints: const BoxConstraints(
+                  //     minWidth: 40,
+                  //   ),
+                  //   icon: Icon(
+                  //     Icons.close_outlined,
+                  //     color: greyDark,
+                  //   ),
+                  // ),
                   const SizedBox(
                     width: 10,
                   ),
