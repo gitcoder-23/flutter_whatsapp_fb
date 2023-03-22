@@ -17,16 +17,24 @@ MaterialColor primeColor = MaterialColor(0xffd1ad17, color);
 
 Color mainBackgroundDark = const Color(0xFF111B21);
 Color mainBackgroundLight = const Color(0xFFFFFFFF);
+
 Color kWhite = Colors.white;
 Color kRed = Colors.red;
 Color kBlue = Colors.blue;
+Color kTransparent = Colors.transparent;
+
 Color greenLight = const Color(0xFF00A884);
 Color greenDark = const Color(0xFF008069);
+
 Color blueDark = const Color(0xFF53BDEB);
 Color blueLight = const Color(0xFF027EB5);
+
 Color greyDark = const Color(0xFF8696A0);
 Color greyLight = const Color(0xFF667781);
+
 Color greyBackground = const Color(0xFF202C33);
-Color kTransparent = Colors.transparent;
+
+Color authAppbarTextLight = const Color(0xFF00A884);
+Color authAppbarTextDark = const Color(0xFFE9EDEF);
 
 const int kPrimaryColor = 0xffd1ad17;

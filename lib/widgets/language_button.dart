@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 
 class LanguageButton extends StatelessWidget {
-  final onLangBtnTap;
+  final onLangShowBottomSheet;
   const LanguageButton({
-    required this.onLangBtnTap,
+    required this.onLangShowBottomSheet,
     super.key,
   });
 
@@ -15,7 +15,7 @@ class LanguageButton extends StatelessWidget {
       color: context.theme.langBtnBgColor,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: onLangBtnTap,
+        onTap: () => onLangShowBottomSheet(context),
         borderRadius: BorderRadius.circular(20),
         splashFactory: NoSplash.splashFactory,
         highlightColor: context.theme.langBtnHighlightColor,

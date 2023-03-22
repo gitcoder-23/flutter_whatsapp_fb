@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
+import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_elevated_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/language_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/privacy_and_terms.dart';
@@ -13,8 +14,100 @@ class WelcomePage extends StatelessWidget {
     print('Ho');
   }
 
-  onLangBtnTap() {
-    print('onLangBtnTap--> ${ThemeMode.system}');
+  onLangShowBottomSheet(context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                height: 4,
+                width: 30,
+                decoration: BoxDecoration(
+                  color: context.theme.greyColor?.withOpacity(0.4),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      // to close modal
+                      Navigator.of(context).pop();
+                    },
+                    splashColor: kTransparent,
+                    splashRadius: 22,
+                    iconSize: 22,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(
+                      minWidth: 40,
+                    ),
+                    icon: Icon(
+                      Icons.close_outlined,
+                      color: greyDark,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Text(
+                    'App Language',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Divider(
+                color: context.theme.greyColor?.withOpacity(0.3),
+                thickness: 0.5,
+              ),
+              RadioListTile(
+                value: true,
+                groupValue: true,
+                activeColor: greenDark,
+                title: const Text('English'),
+                subtitle: Text(
+                  "(Default language)",
+                  style: TextStyle(
+                    color: context.theme.greyColor,
+                  ),
+                ),
+                onChanged: (value) {},
+              ),
+              RadioListTile(
+                value: true,
+                groupValue: false,
+                activeColor: greenDark,
+                title: const Text('Hindi'),
+                subtitle: Text(
+                  "(Hindi language)",
+                  style: TextStyle(
+                    color: context.theme.greyColor,
+                  ),
+                ),
+                onChanged: (value) {},
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -64,7 +157,7 @@ class WelcomePage extends StatelessWidget {
                   height: 50,
                 ),
                 LanguageButton(
-                  onLangBtnTap: onLangBtnTap,
+                  onLangShowBottomSheet: onLangShowBottomSheet,
                 ),
               ],
             ),

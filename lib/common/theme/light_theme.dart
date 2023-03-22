@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
 
@@ -9,6 +10,13 @@ ThemeData lightTheme() {
     backgroundColor: mainBackgroundLight,
     scaffoldBackgroundColor: mainBackgroundLight,
     extensions: [CustomThemeExtension.lightMode],
+
+    appBarTheme: AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: kTransparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: greenLight,
@@ -16,6 +24,16 @@ ThemeData lightTheme() {
         splashFactory: NoSplash.splashFactory,
         elevation: 0,
         shadowColor: kTransparent,
+      ),
+    ),
+
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: mainBackgroundLight,
+      modalBackgroundColor: mainBackgroundLight,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
       ),
     ),
   );
