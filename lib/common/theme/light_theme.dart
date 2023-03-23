@@ -12,6 +12,7 @@ ThemeData lightTheme() {
     extensions: [CustomThemeExtension.lightMode],
 
     appBarTheme: AppBarTheme(
+      titleTextStyle: const TextStyle(fontSize: 18),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: kTransparent,
         statusBarIconBrightness: Brightness.dark,

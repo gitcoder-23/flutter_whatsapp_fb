@@ -35,6 +35,8 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       onTap: onTap,
       onChanged: onChanged,
+      style: TextStyle(fontSize: fontSize),
+      autofocus: autoFocus ?? false,
       controller: controller,
       readOnly: readOnly ?? false,
       textAlign: textAlign ?? TextAlign.center,
