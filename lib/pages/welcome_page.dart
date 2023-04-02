@@ -2,6 +2,7 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
+import 'package:flutter_whatsapp_fb/common/routes/routes.dart';
 import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_elevated_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_icon_button.dart';
@@ -11,8 +12,11 @@ import 'package:flutter_whatsapp_fb/widgets/privacy_and_terms.dart';
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
 
-  onBtnPressed() {
-    print('Ho');
+  navigateToLoginPage(BuildContext context) {
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      Routes.login,
+      (route) => false,
+    );
   }
 
   onLangShowBottomSheet(context) {
@@ -162,7 +166,7 @@ class WelcomePage extends StatelessWidget {
                 CustomElevatedButton(
                   btnHeight: 42,
                   btnWidth: MediaQuery.of(context).size.width - 100,
-                  onBtnPressed: onBtnPressed,
+                  onBtnPressed: () => navigateToLoginPage(context),
                   btnName: 'AGREE AND CONTINUE',
                 ),
                 const SizedBox(

@@ -6,8 +6,10 @@ import 'package:flutter_whatsapp_fb/widgets/custom_icon_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_text_field.dart';
 
 class VerificationPage extends StatefulWidget {
-  const VerificationPage({super.key});
-
+  final String verificationId;
+  final String phoneNumber;
+  const VerificationPage(
+      {required this.verificationId, required this.phoneNumber, super.key});
   @override
   State<VerificationPage> createState() => _VerificationPageState();
 }
