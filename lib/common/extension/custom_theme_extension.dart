@@ -8,6 +8,28 @@ extension ExtendedTheme on BuildContext {
 }
 
 class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
+  final Color? circleImageColor;
+  final Color? greyColor;
+  final Color? blueColor;
+  final Color? langBtnBgColor;
+  final Color? langBtnHighlightColor;
+  final Color? greenColor;
+  final Color? authAppbarTextColor;
+  final Color? photoIconBgColor;
+  final Color? photoIconColor;
+
+  CustomThemeExtension({
+    this.circleImageColor,
+    this.greyColor,
+    this.blueColor,
+    this.langBtnBgColor,
+    this.langBtnHighlightColor,
+    this.greenColor,
+    this.authAppbarTextColor,
+    this.photoIconBgColor,
+    this.photoIconColor,
+  });
+
   static CustomThemeExtension lightMode = CustomThemeExtension(
     circleImageColor: const Color(0xFF25D366),
     greyColor: greyLight,
@@ -16,6 +38,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     langBtnHighlightColor: const Color(0xFFE8E8ED),
     greenColor: greenLight,
     authAppbarTextColor: authAppbarTextLight,
+    photoIconBgColor: const Color(0xFFF0F2F3),
+    photoIconColor: const Color(0xFF9DAAB3),
   );
 
   static CustomThemeExtension darkMode = CustomThemeExtension(
@@ -26,25 +50,9 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     langBtnHighlightColor: const Color(0xFF09141A),
     greenColor: greenDark,
     authAppbarTextColor: authAppbarTextDark,
+    photoIconBgColor: const Color(0xFF283339),
+    photoIconColor: const Color(0xFF61717B),
   );
-
-  final Color? circleImageColor;
-  final Color? greyColor;
-  final Color? blueColor;
-  final Color? langBtnBgColor;
-  final Color? langBtnHighlightColor;
-  final Color? greenColor;
-  final Color? authAppbarTextColor;
-
-  CustomThemeExtension({
-    this.circleImageColor,
-    this.greyColor,
-    this.blueColor,
-    this.langBtnBgColor,
-    this.langBtnHighlightColor,
-    this.greenColor,
-    this.authAppbarTextColor,
-  });
 
   @override
   ThemeExtension<CustomThemeExtension> copyWith({
@@ -55,6 +63,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
     Color? langBtnHighlightColor,
     Color? greenColor,
     Color? authAppbarTextColor,
+    Color? photoIconBgColor,
+    Color? photoIconColor,
   }) {
     return CustomThemeExtension(
       circleImageColor: circleImageColor ?? this.circleImageColor,
@@ -65,6 +75,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       langBtnHighlightColor:
           langBtnHighlightColor ?? this.langBtnHighlightColor,
       greenColor: greenColor ?? this.greenColor,
+      photoIconBgColor: photoIconBgColor ?? this.photoIconBgColor,
+      photoIconColor: photoIconColor ?? this.photoIconColor,
     );
   }
 
@@ -82,6 +94,8 @@ class CustomThemeExtension extends ThemeExtension<CustomThemeExtension> {
       langBtnHighlightColor:
           Color.lerp(langBtnHighlightColor, other.langBtnHighlightColor, t),
       greenColor: Color.lerp(greenColor, other.greenColor, t),
+      photoIconBgColor: Color.lerp(photoIconBgColor, other.photoIconBgColor, t),
+      photoIconColor: Color.lerp(photoIconColor, other.photoIconColor, t),
     );
   }
 }
