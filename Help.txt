@@ -20,7 +20,9 @@ https://javiercbk.github.io/json_to_dart/
 https://youtube.com/playlist?list=PLKVW6d8dj19TgglsvNcWq0OzKXUMZtUqL
 
 
-Part- 7
+phone Authentication vid- 7
+
+Part- 8
 
 
 
@@ -195,6 +197,14 @@ https://www.nationsonline.org/oneworld/country_code_list.htm
 
 
 
+// Issue Fixing Link
+1> [firebase_auth/unknown] Please register custom URL scheme 'app-1-82239880835-ios-886e0dfbd45fefd7f9a5b6' in the app's Info.plist file.
 
+-->
+https://stackoverflow.com/questions/71713781/ios-crashes-with-please-register-custom-url-scheme-but-already-added
 
-
+https://i.stack.imgur.com/vq3UQ.png
+https://i.stack.imgur.com/tkJae.png
+https://i.stack.imgur.com/lfTxI.png
+https://stackoverflow.com/questions/61514076/firebase-phone-auth-getting-ios-error-register-custom-url-scheme
+https://stackoverflow.com/questions/71713781/ios-crashes-with-please-register-custom-url-scheme-but-already-added

@@ -1,20 +1,22 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
+import 'package:flutter_whatsapp_fb/pages/auth/controller/auth_controller.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_elevated_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_icon_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_text_field.dart';
 import 'package:flutter_whatsapp_fb/widgets/show_alert_dialog.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  ConsumerState<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends ConsumerState<LoginPage> {
   late TextEditingController countryNameController;
   late TextEditingController countryCodeController;
   late TextEditingController phoneNumberController;
@@ -52,7 +54,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
+      // Onselect Code
       onSelect: (country) {
+        print('country-sels-> $country');
         countryNameController.text = country.name;
         countryCodeController.text = country.phoneCode;
       },
@@ -76,10 +80,17 @@ class _LoginPageState extends State<LoginPage> {
               "The phone number you entered is too short for the cuntry: $countryName. \n\nInclude your area code if you haven't");
     } else if (phoneNumber.length > 10) {
       return ShowAlertDialog(
-          context: context,
-          message:
-              "The phone number you entered is too long for the country: $countryName");
+        context: context,
+        message:
+            "The phone number you entered is too long for the country: $countryName",
+      );
     }
+
+    // Request A Verification Code
+    ref.read(authControllerProvider).sendSmsCode(
+          context: context,
+          phoneNumber: "+$countryCode$phoneNumber",
+        );
   }
 
   @override

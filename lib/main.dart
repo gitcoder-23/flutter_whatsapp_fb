@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whatsapp_fb/common/routes/routes.dart';
 import 'package:flutter_whatsapp_fb/common/theme/dark_theme.dart';
 import 'package:flutter_whatsapp_fb/common/theme/light_theme.dart';
@@ -9,10 +10,16 @@ import 'package:flutter_whatsapp_fb/pages/welcome_page.dart';
 //   runApp(const MyApp());
 // }
 
-Future main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(const MyApp());
+  // "Provider Added"
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
+  // runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
