@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp_fb/pages/auth/login_page.dart';
 import 'package:flutter_whatsapp_fb/pages/auth/verification_page.dart';
+import 'package:flutter_whatsapp_fb/pages/home_page.dart';
 import 'package:flutter_whatsapp_fb/pages/user_info_page.dart';
 import 'package:flutter_whatsapp_fb/pages/welcome_page.dart';
 
@@ -9,6 +10,7 @@ class Routes {
   static const String login = 'login';
   static const String verification = 'verification';
   static const String userInfo = 'userinfo';
+  static const String home = 'home';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -31,6 +33,10 @@ class Routes {
       case userInfo:
         return MaterialPageRoute(
           builder: (context) => const UserInfoPage(),
+        );
+      case home:
+        return MaterialPageRoute(
+          builder: (context) => const HomePage(),
         );
       default:
         return MaterialPageRoute(

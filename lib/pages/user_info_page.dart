@@ -4,8 +4,10 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
+import 'package:flutter_whatsapp_fb/pages/auth/controller/auth_controller.dart';
 import 'package:flutter_whatsapp_fb/pages/image_picker_page.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_elevated_button.dart';
 import 'package:flutter_whatsapp_fb/widgets/custom_icon_button.dart';
@@ -14,16 +16,44 @@ import 'package:flutter_whatsapp_fb/widgets/short_h_bar.dart';
 import 'package:flutter_whatsapp_fb/widgets/show_alert_dialog.dart';
 import 'package:image_picker/image_picker.dart';
 
-class UserInfoPage extends StatefulWidget {
+class UserInfoPage extends ConsumerStatefulWidget {
   const UserInfoPage({super.key});
 
   @override
-  State<UserInfoPage> createState() => _UserInfoPageState();
+  ConsumerState<UserInfoPage> createState() => _UserInfoPageState();
 }
 
-class _UserInfoPageState extends State<UserInfoPage> {
+class _UserInfoPageState extends ConsumerState<UserInfoPage> {
   File? imageCamera;
   Uint8List? imageGallery;
+
+  late TextEditingController userNameController;
+
+  saveUserDataToFirebase() {
+    print('saveUserDataToFirebase');
+    String username = userNameController.text;
+
+    if (username.isEmpty) {
+      return showAlertDialog(
+        context: context,
+        message: "Please provide a username",
+      );
+    } else if (username.length < 3 || username.length > 20) {
+      return showAlertDialog(
+        context: context,
+        message: "Username length should be between 3-20",
+      );
+    }
+
+    // By using Flutter_Riverpod Provider
+    ref.read(authControllerProvider).saveUserInfoToFirebase(
+          username: username,
+          profileImage: imageCamera ?? imageGallery ?? '',
+          // ref: ref,
+          context: context,
+          mounted: mounted,
+        );
+  }
 
   imagePickerTypeBottomSheet() {
     return showModalBottomSheet(
@@ -101,7 +131,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         imageGallery = null;
       });
     } catch (e) {
-      ShowAlertDialog(context: context, message: e.toString());
+      showAlertDialog(context: context, message: e.toString());
     }
   }
 
@@ -131,6 +161,18 @@ class _UserInfoPageState extends State<UserInfoPage> {
         )
       ],
     );
+  }
+
+  @override
+  void initState() {
+    userNameController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    userNameController.dispose();
+    super.dispose();
   }
 
   @override
@@ -201,8 +243,9 @@ class _UserInfoPageState extends State<UserInfoPage> {
               children: [
                 const SizedBox(width: 10),
                 // Issue of "hasSize" use Expand
-                const Expanded(
+                Expanded(
                     child: CustomTextField(
+                  controller: userNameController,
                   hintText: 'Type your name here',
                   textAlign: TextAlign.left,
                   autoFocus: true,
@@ -223,7 +266,7 @@ class _UserInfoPageState extends State<UserInfoPage> {
         btnHeight: 40,
         btnWidth: 90,
         btnName: 'NEXT',
-        onBtnPressed: () {},
+        onBtnPressed: saveUserDataToFirebase,
       ),
     );
   }

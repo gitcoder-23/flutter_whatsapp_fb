@@ -2,8 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_whatsapp_fb/common/models/user_model.dart';
+import 'package:flutter_whatsapp_fb/common/repository/firebase_storage_repository.dart';
 import 'package:flutter_whatsapp_fb/common/routes/routes.dart';
 import 'package:flutter_whatsapp_fb/widgets/show_alert_dialog.dart';
+import 'package:flutter_whatsapp_fb/widgets/show_loading_dialog.dart';
 
 final authRepositoryProvider = Provider(
   (ref) {
@@ -23,6 +26,53 @@ class AuthRepository {
     required this.fireStore,
   });
 
+  void saveUserInfoToFirebase({
+    required String username,
+    required var profileImage,
+    required ProviderRef ref,
+    required BuildContext context,
+    required bool mounted,
+  }) async {
+    try {
+      showLoadingDialog(
+        context: context,
+        message: "Saving user info ... ",
+      );
+
+      String uid = auth.currentUser!.uid;
+      String profileImageUrl = profileImage is String ? profileImage : '';
+      if (profileImage != null && profileImage is! String) {
+        profileImageUrl = await ref
+            .read(firebaseStorageRepositoryProvider)
+            .storeFileToFirebase('profileImage/$uid', profileImage);
+      }
+
+      UserModel user = UserModel(
+        username: username,
+        uid: uid,
+        profileImageUrl: profileImageUrl,
+        active: true,
+        lastSeen: DateTime.now().millisecondsSinceEpoch,
+        phoneNumber: auth.currentUser!.phoneNumber!,
+        groupId: [],
+      );
+
+      await fireStore.collection('users').doc(uid).set(user.toMap());
+      if (!mounted) return;
+
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        Routes.home,
+        (route) => false,
+      );
+    } catch (e) {
+      showAlertDialog(
+        context: context,
+        message: e.toString(),
+      );
+    }
+  }
+
   void verifySmsCode({
     required BuildContext context,
     required String smsCodeId,
@@ -30,10 +80,10 @@ class AuthRepository {
     required bool mounted,
   }) async {
     try {
-      // ShowLoadingDialog(
-      //   context: context,
-      //   message: 'Verifiying code ... ',
-      // );
+      showLoadingDialog(
+        context: context,
+        message: 'Verifiying code ... ',
+      );
       final credential = PhoneAuthProvider.credential(
         verificationId: smsCodeId,
         smsCode: smsCode,
@@ -50,7 +100,7 @@ class AuthRepository {
     } on FirebaseAuthException catch (e) {
       // Navigator.pop(context);
       print("verifySmsCode-->err-> $e");
-      ShowAlertDialog(context: context, message: e.toString());
+      showAlertDialog(context: context, message: e.toString());
     }
   }
 
@@ -66,7 +116,7 @@ class AuthRepository {
         },
         verificationFailed: (e) {
           print("verificationFailed-->err-> $e");
-          ShowAlertDialog(
+          showAlertDialog(
             context: context,
             message: e.toString(),
           );
@@ -85,7 +135,7 @@ class AuthRepository {
       );
     } on FirebaseAuth catch (e) {
       print("FirebaseAuth-->err-> $e");
-      ShowAlertDialog(
+      showAlertDialog(
         context: context,
         message: e.toString(),
       );

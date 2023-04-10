@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_whatsapp_fb/common/routes/routes.dart';
 import 'package:flutter_whatsapp_fb/common/theme/dark_theme.dart';
 import 'package:flutter_whatsapp_fb/common/theme/light_theme.dart';
-import 'package:flutter_whatsapp_fb/pages/user_info_page.dart';
+import 'package:flutter_whatsapp_fb/pages/welcome_page.dart';
 
 // void main() {
 //   runApp(const MyApp());
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme(),
       darkTheme: darkTheme(),
       themeMode: ThemeMode.system,
-      home: const UserInfoPage(),
+      home: const WelcomePage(),
       onGenerateRoute: Routes.onGenerateRoute,
     );
   }

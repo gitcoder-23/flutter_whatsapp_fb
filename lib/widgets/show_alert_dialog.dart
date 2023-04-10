@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 
-ShowAlertDialog({
+showAlertDialog({
   required BuildContext context,
   required String message,
   String? btnText,

@@ -1,5 +1,5 @@
 // Flutter Whatsapp Clone
-
+for Firebase--> flutter-whatsapp
 
 
 
@@ -23,6 +23,8 @@ https://youtube.com/playlist?list=PLKVW6d8dj19TgglsvNcWq0OzKXUMZtUqL
 phone Authentication vid- 7
 
 Image Picker Camera & File vid- 8
+
+Firebase-Store-Ops vid--> 9
 
 Part- 9
 

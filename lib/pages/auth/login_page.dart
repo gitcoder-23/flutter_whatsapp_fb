@@ -71,15 +71,15 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final countryCode = countryCodeController.text;
 
     if (phoneNumber.isEmpty) {
-      return ShowAlertDialog(
+      return showAlertDialog(
           context: context, message: "Please enter your phone number");
     } else if (phoneNumber.length < 9) {
-      return ShowAlertDialog(
+      return showAlertDialog(
           context: context,
           message:
               "The phone number you entered is too short for the cuntry: $countryName. \n\nInclude your area code if you haven't");
     } else if (phoneNumber.length > 10) {
-      return ShowAlertDialog(
+      return showAlertDialog(
         context: context,
         message:
             "The phone number you entered is too long for the country: $countryName",
