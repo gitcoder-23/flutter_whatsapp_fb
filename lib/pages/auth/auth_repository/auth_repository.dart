@@ -26,6 +26,15 @@ class AuthRepository {
     required this.fireStore,
   });
 
+  Future<UserModel?> getCurrentUserInfo() async {
+    UserModel? user;
+    final userInfo =
+        await fireStore.collection('users').doc(auth.currentUser!.uid).get();
+    if (userInfo.data() == null) return user;
+    user = UserModel.fromMap(userInfo.data()!);
+    return user;
+  }
+
   void saveUserInfoToFirebase({
     required String username,
     required var profileImage,
@@ -66,6 +75,10 @@ class AuthRepository {
         (route) => false,
       );
     } catch (e) {
+      print('saveUserInfoToFirebase--err-> $e');
+
+      Navigator.pop(context);
+
       showAlertDialog(
         context: context,
         message: e.toString(),
@@ -89,17 +102,18 @@ class AuthRepository {
         smsCode: smsCode,
       );
       await auth.signInWithCredential(credential);
-      // UserModel? user = await getCurrentUserInfo();
+      UserModel? user = await getCurrentUserInfo();
       if (!mounted) return;
       Navigator.pushNamedAndRemoveUntil(
         context,
         Routes.userInfo,
         (route) => false,
-        // arguments: user?.profileImageUrl,
+        arguments: user?.profileImageUrl,
       );
     } on FirebaseAuthException catch (e) {
-      // Navigator.pop(context);
       print("verifySmsCode-->err-> $e");
+      Navigator.pop(context);
+
       showAlertDialog(context: context, message: e.toString());
     }
   }
@@ -109,6 +123,10 @@ class AuthRepository {
     required String phoneNumber,
   }) async {
     try {
+      showLoadingDialog(
+        context: context,
+        message: "Sending a verification code to $phoneNumber",
+      );
       await auth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
@@ -135,6 +153,7 @@ class AuthRepository {
       );
     } on FirebaseAuth catch (e) {
       print("FirebaseAuth-->err-> $e");
+      Navigator.pop(context);
       showAlertDialog(
         context: context,
         message: e.toString(),

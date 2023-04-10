@@ -10,8 +10,11 @@ import 'package:flutter_whatsapp_fb/widgets/custom_text_field.dart';
 class VerificationPage extends ConsumerWidget {
   final String smsCodeId;
   final String phoneNumber;
-  const VerificationPage(
-      {required this.smsCodeId, required this.phoneNumber, super.key});
+  const VerificationPage({
+    required this.smsCodeId,
+    required this.phoneNumber,
+    super.key,
+  });
 //   @override
 //   State<VerificationPage> createState() => _VerificationPageState();
 // }
