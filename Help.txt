@@ -20,13 +20,15 @@ https://javiercbk.github.io/json_to_dart/
 https://youtube.com/playlist?list=PLKVW6d8dj19TgglsvNcWq0OzKXUMZtUqL
 
 
+Verification & Country_picker --> 4
+
 phone Authentication vid- 7
 
 Image Picker Camera & File vid- 8
 
 Firebase-Store-Ops vid--> 9
 
-Part- 11
+Part- 13
 
 
 

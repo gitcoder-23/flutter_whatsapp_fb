@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_whatsapp_fb/components/constants/colors.dart';
-import 'package:flutter_whatsapp_fb/common/extension/custom_theme_extension.dart';
 
 class CustomIconButton extends StatelessWidget {
   final VoidCallback onIconBtnTap;
@@ -47,7 +46,7 @@ class CustomIconButton extends StatelessWidget {
         ),
         icon: Icon(
           icon,
-          color: iconColor ?? context.theme.greyColor,
+          color: iconColor ?? Theme.of(context).appBarTheme.iconTheme!.color,
         ),
       ),
     );
